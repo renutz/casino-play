@@ -3,7 +3,6 @@ package controllers.casino;
 import play.Play;
 import play.data.validation.Email;
 import play.data.validation.Equals;
-import play.data.validation.IsTrue;
 import play.data.validation.MinSize;
 import play.data.validation.Required;
 import ugot.recaptcha.Recaptcha;
@@ -28,8 +27,8 @@ public class Registration extends TransportUriGuarantee {
 	 */
 	public static void registrationFinish(@Recaptcha String captcha,
 			@Required @Email String email,
-			@Required @Equals("confirm") @MinSize(4) String password,
-			@Required @MinSize(4) String confirm) {
+			@Required @MinSize(4) String password,
+			@Required @MinSize(4) @Equals("password") String confirm) {
 
 		// check that form is really from user:
 		checkAuthenticity();
