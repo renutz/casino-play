@@ -29,8 +29,7 @@ public class Registration extends TransportUriGuarantee {
 	public static void registrationFinish(@Recaptcha String captcha,
 			@Required @Email String email,
 			@Required @Equals("confirm") @MinSize(4) String password,
-			@Required @MinSize(4) String confirm,
-			@IsTrue Boolean acceptTermsOfService) {
+			@Required @MinSize(4) String confirm) {
 
 		// check that form is really from user:
 		checkAuthenticity();
@@ -68,12 +67,6 @@ public class Registration extends TransportUriGuarantee {
 			flash.error("registration.error");
 			validation.keep();
 			params.flash("email");
-
-			// If acceptTermsOfService is not checked it is not sent to server..
-			// therefore we check for null...
-			if (acceptTermsOfService != null) {
-				params.flash("acceptTermsOfService");
-			}
 
 			registration();
 
