@@ -28,8 +28,8 @@ public class Registration extends TransportUriGuarantee {
 	 */
 	public static void registrationFinish(@Recaptcha String captcha,
 			@Required @Email String email,
-			@Required @Equals("confirm") @MinSize(8) String password,
-			@Required @MinSize(8) String confirm,
+			@Required @Equals("confirm") @MinSize(4) String password,
+			@Required @MinSize(4) String confirm,
 			@IsTrue Boolean acceptTermsOfService) {
 
 		// check that form is really from user:
