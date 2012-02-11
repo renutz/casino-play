@@ -125,4 +125,9 @@ public class User extends EnhancedModel {
 		this.roles = roles;
 	}
 
+	@Override
+	public String toString() {
+		return "User [email=" + email + ", roles=" + roles + "]";
+	}
+	
 }
