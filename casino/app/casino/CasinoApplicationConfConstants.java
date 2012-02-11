@@ -22,5 +22,7 @@ public interface CasinoApplicationConfConstants {
 	public static String AFTER_CREATION_HOOK = "casino.afterUserCreationHook";
 	
 	public static final String CASINO_USER_MANAGER = "casino.userManager";
-
+	
+	public static final String NO_EMAIL_ADDRESS_CONFIRMATION = "casino.noEmailAddressConfirmation";
+	
 }

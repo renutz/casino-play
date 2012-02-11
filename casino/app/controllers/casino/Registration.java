@@ -7,6 +7,7 @@ import play.data.validation.MinSize;
 import play.data.validation.Required;
 import ugot.recaptcha.Recaptcha;
 import casino.Casino;
+import casino.CasinoApplicationConfConstants;
 import casino.RegistrationMailer;
 
 public class Registration extends TransportUriGuarantee {
@@ -18,7 +19,6 @@ public class Registration extends TransportUriGuarantee {
 	 * Show registration screen.
 	 */
 	public static void registration() {
-
 		render();
 	}
 
@@ -70,18 +70,27 @@ public class Registration extends TransportUriGuarantee {
 			registration();
 
 		} else {
-
-			String passwordHash = Casino.getHashForPassword(password);
-			String confirmationCode = Casino.shortUUID();
-
-			Casino.createNewCasinoUser(email, passwordHash,
-					confirmationCode);
-
-			RegistrationMailer.confirmation(email, confirmationCode);
-			pending();
-
+			createNewUser(email, password);
 		}
 
+	}
+
+	private static void createNewUser(String email, String password) {
+		String passwordHash = Casino.getHashForPassword(password);
+		String confirmationCode = Casino.shortUUID();
+		Casino.createNewCasinoUser(email, passwordHash, confirmationCode);
+
+		if (emailAddressConfirmationRequired()) {
+			RegistrationMailer.confirmation(email, confirmationCode);
+			pending();
+		} else {
+			confirm(confirmationCode);
+		}
+	}
+	
+	private static boolean emailAddressConfirmationRequired() {
+		String confirmationNotRequired = Play.configuration.getProperty(CasinoApplicationConfConstants.NO_EMAIL_ADDRESS_CONFIRMATION);
+		return !"true".equalsIgnoreCase(confirmationNotRequired);
 	}
 
 	/**
