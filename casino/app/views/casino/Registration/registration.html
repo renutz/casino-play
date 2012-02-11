@@ -31,6 +31,7 @@
         </li>
         <li>
             #{ugot.recaptcha theme:"clean", tabindex:"2"/}
+            #{ifError 'captcha'}<span class="error">#{error 'captcha' /}</span>#{/ifError}
         </li>
         <li>
             <input type="submit" id="submit" value="&{'registration.register'}" />
