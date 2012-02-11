@@ -235,8 +235,8 @@ public class Registration extends TransportUriGuarantee {
 	 */
 	public static void lostPasswordNewPasswordFinish(@Required String code,
 			@Recaptcha String captcha,
-			@Required @Equals("passwordConfirm") @MinSize(8) String password,
-			@Required @MinSize(8) String passwordConfirm) {
+			@Required @Equals("passwordConfirm") @MinSize(4) String password,
+			@Required @MinSize(4) String passwordConfirm) {
 
 		// check:
 		checkAuthenticity();
