@@ -111,7 +111,7 @@ public class User extends EnhancedModel {
 
 	}
 	
-	private List<String> getRoles() {
+	public List<String> getRoles() {
 	
 		if (roles == null) {
 			roles = new ArrayList<String>();
@@ -120,7 +120,9 @@ public class User extends EnhancedModel {
 		return roles;
 		
 	}
-
-
+	
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
 
 }
