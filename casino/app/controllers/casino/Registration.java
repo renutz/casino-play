@@ -53,8 +53,8 @@ public class Registration extends TransportUriGuarantee {
 
 		// check if user exists and don't allow to register user:
 		if (!hasErrors) {
-
 			if (Casino.doesUserExist(email)) {
+				validation.addError("email", "registration.email_exists");
 				hasErrors = true;
 
 			}

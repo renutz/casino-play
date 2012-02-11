@@ -7,6 +7,7 @@ registration.register=Go!
 
 # Signup success => check email
 registration.please_verify_email_address=Confirmation email sent. Please check your inbox :)
+registration.email_exists=Email address already in use.
 
 # Signup email confirmation text:
 registration.confirmation.greeting=Hi
